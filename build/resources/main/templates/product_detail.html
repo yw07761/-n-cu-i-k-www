@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Product Detail</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 20px;
+        }
+
+        div {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        p {
+            margin: 5px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #4caf50;
+            color: white;
+        }
+
+        span {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div>
+    <p><span>Product ID:</span> <span th:text="${product.productId}"></span></p>
+    <p><span>Description:</span> <span th:text="${product.description}"></span></p>
+    <p><span>Manufacture Name:</span> <span th:text="${product.manufactureName}"></span></p>
+    <p><span>Name:</span> <span th:text="${product.name}"></span></p>
+    <p><span>Status:</span> <span th:text="${product.status}"></span></p>
+    <p><span>Unit:</span> <span th:text="${product.unit}"></span></p>
+</div>
+
+<table>
+    <thead>
+    <tr>
+        <th>Price DateTime</th>
+        <th>Price</th>
+        <th>Note</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="pp : ${productPrices}">
+        <td><span>Price DateTime:</span> <span th:text="${pp.priceDateTime}"></span></td>
+        <td><span th:text="${pp.price}"></span></td>
+        <td><span th:text="${pp.note}"></span></td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
+
+
+<!--
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Product detail</title>
+</head>
+<body>
+
+<div>
+    <p>Product ID: <span th:text="${product.productId}"></span></p>
+    <p>Description: <span th:text="${product.description}"></span></p>
+    <p>Manufacture Name: <span th:text="${product.manufactureName}"></span></p>
+    <p>Name: <span th:text="${product.name}"></span></p>
+    <p>Status: <span th:text="${product.status}"></span></p>
+    <p>Unit: <span th:text="${product.unit}"></span></p>
+</div>
+
+<table>
+    <thead>
+    <tr>
+        <th>Price DateTime</th>
+        <th>Price</th>
+        <th>Note</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="pp : ${productPrices}">
+        <td>Price DateTime: <span th:text="${pp.priceDateTime}"></span></td>
+        <td>Price: <span th:text="${pp.price}"></span></td>
+        <td>Note: <span th:text="${pp.note}"></span></td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
+-->

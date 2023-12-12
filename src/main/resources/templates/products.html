@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Products</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .inline {
+            display: inline;
+        }
+
+        .active {
+            color: red;
+            background-color: aqua;
+        }
+    </style>
+</head>
+<body>
+<form th:action="@{/search-by-name}" method="get">
+    Name: <input name="name" style="margin-right: 10px;">
+    <button type="submit">Search</button>
+</form>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Description</th>
+        <th>Manufacture Name</th>
+        <th>Name</th>
+        <th>Status</th>
+        <th>Unit</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="p : ${paging.content}">
+        <td th:text="${p.productId}"></td>
+        <td th:text="${p.description}"></td>
+        <td th:text="${p.manufactureName}"></td>
+        <td th:text="${p.name}"></td>
+        <td th:text="${p.status}"></td>
+        <td th:text="${p.unit}"></td>
+        <td><a th:href="@{/detail/{id}(id=${p.productId})}">Detail</a></td>
+    </tr>
+    </tbody>
+
+</table>
+<div class="inline" th:if="${paging.totalPages > 0}" th:each="number, iStat : ${pageNumbers}">
+    <a th:href="@{/product-paging(pageNumber=${number})}"
+       th:text="${number}"
+       th:class="${number == paging.number} ? 'active'">
+    </a>
+</div>
+</body>
+</html>
+
+
+<!--
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Products</title>
+    <style>
+        .inline {
+            display: inline;
+        }
+
+        .active {
+            color: red;
+            background-color: aqua;
+        }
+    </style>
+</head>
+<body>
+<form th:action="@{/search-by-name}">
+    Name: <input name="name">
+    <input type="submit">
+</form>
+<table>
+    <thead>
+    <tr>
+        <th>id</th>
+        <th>description</th>
+        <th>manufacture name</th>
+        <th>name</th>
+        <th>status</th>
+        <th>unit</th>
+        <td><a th:href="@{/add}">add</a></td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="p : ${paging.content}">
+        <td th:text="${p.productId}"></td>
+        <td th:text="${p.description}"></td>
+        <td th:text="${p.manufactureName}"></td>
+        <td th:text="${p.name}"></td>
+        <td th:text="${p.status}"></td>
+        <td th:text="${p.unit}"></td>
+        <td><a th:href="@{/detail/{id}(id=${p.productId})}">detail</a></td>
+    </tr>
+    </tbody>
+</table>
+<div class="inline" th:if="${paging.totalPages > 0}" th:each="number, iStat : ${pageNumbers}">
+    <a th:href="@{/product-paging(pageNumber=${number})}"
+       th:text="${number}"
+       th:class="${number == paging.number} ? 'active'">
+    </a>
+</div>
+</body>
+</html>
+-->

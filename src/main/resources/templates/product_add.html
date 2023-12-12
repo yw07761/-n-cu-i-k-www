@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Product</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 20px;
+        }
+
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: bold;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0 20px;
+            display: inline-block;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        input[type="submit"] {
+            background-color: #4caf50;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+<form th:action="@{/add-product}" method="post" th:object="${product}">
+    <label for="name">Name:</label>
+    <input id="name" th:field="*{name}" />
+
+    <label for="description">Description:</label>
+    <input id="description" th:field="*{description}" />
+
+    <label for="unit">Unit:</label>
+    <input id="unit" th:field="*{unit}" />
+
+    <label for="manufactureName">Manufacture Name:</label>
+    <input id="manufactureName" th:field="*{manufactureName}" />
+
+    <label for="status">Status:</label>
+    <select id="status" th:field="*{status}">
+        <option th:each="stat : ${T(com.example.ontapck.enums.ProductStatus).values()}"
+                th:text="${stat}" th:value="${stat.name()}"></option>
+    </select>
+
+    <label for="price">Price:</label>
+    <div th:object="${productPrice}">
+        <input id="price" th:field="*{price}" />
+    </div>
+
+    <input type="submit" value="Add Product">
+</form>
+</body>
+</html>
+
+
+<!--
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>add</title>
+</head>
+<body>
+<form th:action="@{/add-product}" method="post" th:object="${product}">
+    name:<input th:field="*{name}" /> <br>
+    description:<input th:field="*{description}"/> <br>
+    unit:<input th:field="*{unit}"/> <br>
+    manufactureName:<input th:field="*{manufactureName}"/> <br>
+    status:<select th:field="*{status}">
+    <option th:each="stat : ${T(com.example.ontapck.enums.ProductStatus).values()}"
+            th:text="${stat}" th:value="${stat.name()}"></option>
+</select> <br>
+    <br>
+    <div th:object="${productPrice}">
+        price:<input th:field="*{price}">
+    </div>
+    <br>
+    <input type="submit" value="add">
+</form>
+</body>
+</html>
+-->
